@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RR Mehendi Artist | Sagun Se Khushiya</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background: #fdfaf6;
+      color: #333;
+    }
+    .top-call-bar {
+      background: #fff;
+      padding: 8px 20px;
+      text-align: right;
+      position: sticky;
+      top: 0;
+      z-index: 2000;
+      box-shadow: 0 2px 6px rgba(212, 175, 55, 0.4);
+      font-size: 15px;
+    }
+    .top-call-bar i { color: green; margin-right: 6px; }
+
+    header {
+      background: #fff;
+      text-align: center;
+      padding: 12px 20px;
+      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+      position: sticky;
+      top: 40px;
+      z-index: 1500;
+    }
+    header h1 {
+      margin: 5px 0 0;
+      font-size: 28px;
+      color: goldenrod;
+      text-transform: uppercase;
+    }
+    header p {
+      font-size: 15px;
+      font-style: italic;
+      color: #e67e22;
+      position: sticky;
+      top: 80px;
+    }
+    header p::before, header p::after {
+      content: "🌿";
+      margin: 0 5px;
+    }
+    nav {
+      margin-top: 10px;
+    }
+    nav a {
+      margin: 5px 12px;
+      text-decoration: none;
+      color: #4b2e2e;
+      font-weight: bold;
+      font-size: 15px;
+    }
+    nav a i {
+      margin-left: 5px;
+    }
+    nav a:hover { color: #e67e22; }
+
+    .welcome-box {
+      max-width: 100%;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: goldenrod;
+      text-align: center;
+      position: relative;
+    }
+    .welcome-box h2 {
+      font-size: 40px;
+      background: rgba(0,0,0,0.5);
+      padding: 10px 20px;
+      border-radius: 5px;
+      position: relative;
+    }
+    .welcome-box h2::before, .welcome-box h2::after {
+      content: "✦";
+      margin: 0 10px;
+    }
+    .welcome-box p {
+      font-size: 22px;
+      margin-top: 10px;
+      background: rgba(0,0,0,0.4);
+      padding: 8px 16px;
+      border-radius: 5px;
+    }
+
+    .section {
+      max-width: 1000px;
+      background: #fff;
+      margin: 50px auto;
+      padding: 60px 25px;
+      border-radius: 8px;
+      box-shadow: 0 6px 18px rgba(212, 175, 55, 0.3);
+    }
+    .section h2 {
+      text-align: center;
+      color: #4b2e2e;
+      margin-bottom: 15px;
+      font-size: 26px;
+      animation: blink 2s infinite;
+    }
+    .section h2 i {
+      margin-right: 8px;
+      color: goldenrod;
+    }
+    .section h2::after {
+      content: '';
+      display: block;
+      width: 90px;
+      height: 2px;
+      background: linear-gradient(90deg, goldenrod, #f5e4c3, goldenrod);
+      margin: 12px auto 0;
+      border-radius: 2px;
+    }
+    @keyframes blink {
+      0%, 50%, 100% { opacity: 1; }
+      25%, 75% { opacity: 0.3; }
+    }
+
+    .rate-table {
+      margin: 20px auto;
+      width: 100%;
+      max-width: 700px;
+      border-collapse: collapse;
+    }
+    .rate-table th, .rate-table td {
+      border: 1px solid #ddd;
+      padding: 14px;
+      text-align: center;
+    }
+    .rate-table th {
+      background: goldenrod;
+      color: #fff;
+      font-size: 18px;
+    }
+    .rate-table td { font-size: 17px; }
+
+    .slider img { width: 100%; border-radius: 8px; }
+    .slider-controls {
+      text-align: center;
+      margin-top: 15px;
+    }
+    .slider-controls button {
+      background: goldenrod;
+      color: #fff;
+      border: none;
+      padding: 10px 18px;
+      margin: 0 8px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+    }
+    .lightbox .close, .lightbox .prev, .lightbox .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: white;
+      font-size: 40px;
+      cursor: pointer;
+    }
+    .lightbox .close {
+      top: 20px;
+      right: 40px;
+      font-size: 50px;
+    }
+    .lightbox .prev { left: 20px; }
+    .lightbox .next { right: 20px; }
+
+    #custom-package-form label {
+      display: block;
+      margin: 10px 0;
+    }
+    #custom-package-form input[type="checkbox"] {
+      margin-right: 5px;
+    }
+    #custom-package-form button {
+      background: #25d366;
+      color: #fff;
+      animation: blink 1.5s infinite;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      background: #fff;
+      font-size: 15px;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25d366;
+      color: white;
+      border-radius: 50%;
+      padding: 16px;
+      font-size: 28px;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+
+<div class="top-call-bar">
+  <i class="fas fa-phone-alt"></i> +91 7795817588
+</div>
+
+<header>
+  <h1>RR Mehendi Artist</h1>
+  <p>🌿 Sagun Se Khushiya 🌿</p>
+  <nav>
+    <a href="#gallery">Gallery <i class="fas fa-caret-down"></i></a>
+    <a href="#package">Create Package <i class="fas fa-caret-down"></i></a>
+    <a href="#about">About <i class="fas fa-caret-down"></i></a>
+  </nav>
+</header>
+
+<div class="welcome-box" id="welcome"></div>
+
+<section class="section">
+  <h2><i class="fas fa-award"></i>Certified Artist</h2>
+  <p style="text-align:center;">Certified with WedMeGood. Our team is hardworking & talented to make your events memorable.</p>
+</section>
+
+<section class="section">
+  <h2><i class="fas fa-feather-alt"></i>Signature Mehendi</h2>
+  <p style="text-align:center;">Traditional, Royal and Arabic Mehendi designs to elevate your celebration.</p>
+</section>
+
+<section class="section" id="gallery">
+  <h2><i class="fas fa-images"></i>Design Gallery</h2>
+  <div class="slider">
+    <img id="slide" src="images/1.png" onclick="openLightbox()">
+  </div>
+  <div class="slider-controls">
+    <button onclick="prevSlide()">❮</button>
+    <button onclick="nextSlide()">❯</button>
+  </div>
+</section>
+
+<section class="section">
+  <h2><i class="fas fa-list"></i>Offerings & Packages</h2>
+  <table class="rate-table">
+    <tr><th>Offerings</th><th>Rates</th></tr>
+    <tr><td>Bridal Mehendi</td><td>10,000 onwards</td></tr>
+    <tr><td>Guest Mehendi</td><td>300 per hand till wrist</td></tr>
+    <tr><th colspan="2">Packages</th></tr>
+    <tr><td>1 Bride + 10 Guests</td><td>10,000</td></tr>
+    <tr><td>1 Bride + 25 Guests</td><td>15,000</td></tr>
+    <tr><td>1 Bride + 35 Guests</td><td>25,000</td></tr>
+  </table>
+</section>
+
+<section class="section" id="package">
+  <h2 style="animation:blink 2s infinite;"><i class="fas fa-pen"></i>Create Your Package</h2>
+  <form id="custom-package-form">
+    <label><input type="checkbox" name="bride"> Bride (Wedding)</label>
+    <label><input type="checkbox" name="other"> Other</label>
+    <label>Number of Guests:<input type="number" name="guests"></label>
+    <label>Your Suggested Amount:<input type="number" name="amount"></label>
+    <button type="button" onclick="sendToWhatsApp()">Send via WhatsApp <i class="fab fa-whatsapp"></i></button>
+  </form>
+</section>
+
+<section class="section" id="about">
+  <h2><i class="fas fa-user"></i>About RR Mehendi Artist</h2>
+  <p style="text-align:center;">RR Mehendi Artist is your trusted partner for weddings & festivals. With years of experience, we promise premium designs, safety, and timeless memories.</p>
+</section>
+
+<footer>&copy; 2025 RR Mehendi Artist | 🌿 Sagun Se Khushiya 🌿 | All Rights Reserved</footer>
+<a href="https://wa.me/917795817588" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+<div class="lightbox" id="lightbox">
+  <button class="close" onclick="closeLightbox()">&times;</button>
+  <button class="prev" onclick="prevLightbox()">&lt;</button>
+  <img id="lightbox-img" src="images/1.png">
+  <button class="next" onclick="nextLightbox()">&gt;</button>
+</div>
+
+<script>
+  const bgImages = ['15.png', '16.png', '17.png', '18.png', '19.png', '20.png'];
+  let bgIndex = 0;
+  const welcome = document.getElementById('welcome');
+  function slideBackground() {
+    welcome.style.background = `url('${bgImages[bgIndex]}') center/cover no-repeat`;
+    welcome.innerHTML = '<h2>Welcome</h2><p>Celebrate the Art of Henna</p>';
+    bgIndex = (bgIndex + 1) % bgImages.length;
+  }
+  setInterval(slideBackground, 3000); slideBackground();
+
+  const slides = [];
+  for(let i=1; i<=10; i++){ slides.push(`images/${i}.png`); }
+  let current = 0;
+  let slideInterval = setInterval(nextSlide, 2000);
+  function showSlide() { document.getElementById('slide').src = slides[current]; }
+  function nextSlide() { current = (current+1) % slides.length; showSlide(); }
+  function prevSlide() { current = (current-1+slides.length)%slides.length; showSlide(); }
+  function stopAutoSlide() { clearInterval(slideInterval); setTimeout(()=>slideInterval=setInterval(nextSlide,2000), 2000); }
+  document.querySelectorAll('.slider-controls button').forEach(btn=>btn.addEventListener('click', stopAutoSlide));
+
+  const lightbox = document.getElementById('lightbox');
+  function openLightbox(){ lightbox.style.display='flex'; document.getElementById('lightbox-img').src=slides[current]; clearInterval(slideInterval);}
+  function closeLightbox(){ lightbox.style.display='none'; slideInterval = setInterval(nextSlide,2000); }
+  function nextLightbox(){ current=(current+1)%slides.length; document.getElementById('lightbox-img').src=slides[current]; }
+  function prevLightbox(){ current=(current-1+slides.length)%slides.length; document.getElementById('lightbox-img').src=slides[current]; }
+
+  function sendToWhatsApp(){
+    const f = document.getElementById('custom-package-form');
+    const bride = f.bride.checked ? "Bride Included" : "";
+    const other = f.other.checked ? "Other Included" : "";
+    const guests = f.guests.value; const amount = f.amount.value;
+    const msg = `Create My Package:\n${bride}\n${other}\nGuests: ${guests}\nAmount: ${amount}`;
+    window.open(`https://wa.me/917795817588?text=${encodeURIComponent(msg)}`);
+  }
+</script>
+</body>
+</html>
